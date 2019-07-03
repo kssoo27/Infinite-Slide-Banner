@@ -1,0 +1,58 @@
+<!Doctype html>
+<html>
+<head>
+<title>Infinite Slide Banner_auto</title>
+<link rel="stylesheet" href="css/style.css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script>
+$(function(){
+	
+	function AutoMotion(name){
+	/*
+		var name=""; // id 혹은 class
+	*/
+		var n=0;
+		var total=$(name+" li").length;		
+		
+		$(name+" ul").css({width:(total+1)*100+"%"});
+		$(name+" ul li").css({width:100/(total+1)+"%"});
+
+	// Infinite Banner
+		setInterval(function(){
+			n++;
+			pos=n*-1*100;
+			
+	// Last COPY
+			if(n==total){
+				copy=$(name+" ul li").eq(0).clone(true);
+				console.log(copy);
+				copy.appendTo(name+" ul").css({width:100/(total+1)+"%"});
+			}
+	// Slide Motion
+			$(name+" ul").animate({left:pos+"%"},300,function(){	
+				if(n==total){
+					$(name+" ul").css({left:0}); 
+					$(name+" ul li").last().remove(); 
+					n=0;
+				}
+			});		
+		},3000);
+	}
+	
+	AutoMotion("#main");
+});
+</script>
+</head>
+
+<body>
+<div id="main">
+	<ul>
+		<li><img src="images/image01.jpg" alt="banner01"></li>
+		<li><img src="images/image02.jpg" alt="banner02"></li>
+		<li><img src="images/image03.jpg" alt="banner03"></li>
+		<li><img src="images/image04.jpg" alt="banner04"></li>
+		<li><img src="images/image05.jpg" alt="banner05"></li>
+	</ul>
+</div>
+</body>
+</html>

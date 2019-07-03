@@ -1,0 +1,7 @@
+* { margin: 0; padding: 0;}
+ul, ol {list-style: none};
+#main {position: relative; width: 100%;}
+#main {width: 100%; overflow: hidden;}
+#main ul {position: relative;}
+#main ul li {float: left;}
+#main ul li img {max-width: 100%;}
